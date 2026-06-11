@@ -70,6 +70,11 @@
     "Filters Ontology Hierarchies saved for the given `ontology-version`,
      returning only the hierarchy's leaf-classes that are associated with the given target.")
 
+  (filter-hierarchies-batch
+    [_ username ontology-version attrs target-types target-ids]
+    "Filters Ontology Hierarchies saved for the given `ontology-version` for multiple targets.
+     Returns per-target results: {:targets [{:id UUID :hierarchies [...]} ...]}.")
+
   (filter-targets-by-ontology-search
     [_ username ontology-version attrs search-term target-types target-ids]
     "Filters the given target IDs by returning only those that have any of the given `attrs`
@@ -207,6 +212,16 @@
     [_ username ontology-version attrs target-type target-id]
     (->> (http/post (metadata-url base-url "ontologies" ontology-version "filter")
                     (post-options (json/encode {:attrs attrs :type target-type :id target-id})
+                                  {:user username}
+                                  :as :json))
+         :body))
+
+  (filter-hierarchies-batch
+    [_ username ontology-version attrs target-types target-ids]
+    (->> (http/post (metadata-url base-url "ontologies" ontology-version "filter-targets-batch")
+                    (post-options (json/encode {:attrs        attrs
+                                                :target-types target-types
+                                                :target-ids   target-ids})
                                   {:user username}
                                   :as :json))
          :body))
