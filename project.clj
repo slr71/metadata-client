@@ -9,8 +9,8 @@
             [lein-ancient "1.0.0"]
             [test2junit "1.4.4"]]
   :dependencies [[org.clojure/clojure "1.12.5"]
-                 [clj-http "3.13.0"]
+                 [clj-http "3.13.1"]
                  [com.cemerick/url "0.1.1" :exclusions [com.cemerick/clojurescript.test]]
-                 [cheshire "5.13.0"]
+                 [cheshire "6.2.0"]
                  [medley "1.4.0"]
-                 [org.cyverse/kameleon "3.0.10"]])
+                 [org.cyverse/kameleon "3.0.11"]])
