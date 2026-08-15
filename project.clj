@@ -8,6 +8,9 @@
   :plugins [[jonase/eastwood "1.4.3"]
             [lein-ancient "1.0.0"]
             [test2junit "1.4.4"]]
+  ;; Fail the build on a new dependency conflict rather than printing a
+  ;; warning nobody reads.
+  :pedantic? :abort
   :dependencies [[org.clojure/clojure "1.12.5"]
                  [clj-http "3.13.1"]
                  [com.cemerick/url "0.1.1" :exclusions [com.cemerick/clojurescript.test]]
